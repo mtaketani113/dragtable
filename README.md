@@ -1,2 +1,2 @@
 # dragtable
-dragable.js work in localstarage
+exported from code.google.com/p/dragtable
