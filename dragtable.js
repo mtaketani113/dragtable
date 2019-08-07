@@ -401,7 +401,23 @@ dragtable = {
 			dragtable.moveColumn(table, a, b);
 		}
 	},
-
+	
+	// Reverse all column
+	reverseDrags: function(table) {
+		if (!dragtable.cookiesEnabled()) return;
+		var dragstr = dragtable.readCookie("dragtable-" + table.id);
+		if (!dragstr) return;
+		var drags = dragstr.split(',');
+		for (var i = drags.length - 1; i >= 0; i--) {
+			var pair = drags[i].split("/");
+			if (pair.length != 2) continue;
+			var a = parseInt(pair[0]);
+			var b = parseInt(pair[1]);
+			if (isNaN(a) || isNaN(b)) continue;
+			dragtable.moveColumn(table, b, a);
+		}
+	},
+	
   // Cookie functions based on http://www.quirksmode.org/js/cookies.html
   // Cookies won't work for local files.
   cookiesEnabled: function() {
